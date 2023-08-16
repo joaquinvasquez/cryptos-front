@@ -1,0 +1,710 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap");
+
+:root {
+  --main: #484848;
+  --orange: #ff7200;
+  --opposite: #4e82f3;
+  --black: #000000;
+  --dark: #333333;
+  --light: #f5f5f5;
+  --white: #ffffff;
+  --grey: #bdbdbd91;
+  --greydarker: #959595;
+  --header-height: 80px;
+  --bradius: 0.25rem;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: "Barlow", arial, sans-serif;
+}
+body {
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--light);
+  background-image: url("../img/Exisoft_BGD_1.jpg");
+  background-position: 0 50%;
+  background-size: cover;
+  background-attachment: fixed;
+}
+a,
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+/* Para inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Header */
+header {
+  height: var(--header-height);
+  background-image: url("../img/Exisoft_BGD_4.jpg");
+  background-color: var(--main);
+  background-position: 0 40%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+header a img {
+  height: 2rem;
+  width: auto;
+  margin-left: 4px;
+}
+/* Botones del header */
+.header-btns {
+  position: absolute;
+  right: 7dvw;
+  display: flex;
+  align-items: center;
+}
+.header-btns .btn-burguer-cont {
+  height: 30px;
+  width: 30px;
+  padding: 14px 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-burguer-cont .btn-burguer {
+  width: 100%;
+  height: 2px;
+  background-color: var(--light);
+  transition: background-color 200ms ease-in-out;
+}
+.btn-burguer-cont .btn-burguer::before,
+.btn-burguer-cont .btn-burguer::after {
+  content: "";
+  width: 20px;
+  height: 2px;
+  position: absolute;
+  background-color: var(--light);
+  transition: background-color 200ms ease-in-out;
+}
+.btn-burguer-cont .btn-burguer::before {
+  top: 7px;
+}
+.btn-burguer-cont .btn-burguer::after {
+  bottom: 7px;
+}
+.btn-burguer-cont:hover .btn-burguer,
+.btn-burguer-cont:hover .btn-burguer::before,
+.btn-burguer-cont:hover .btn-burguer::after {
+  background-color: var(--orange);
+}
+.header-btns .btns-group {
+  height: 120px;
+  width: 100px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--light);
+  border: 2px solid var(--orange);
+  border-radius: var(--bradius);
+  -webkit-animation: zoomIn 300ms both;
+  animation: zoomIn 300ms both;
+}
+.header-btns .btns-group > span:hover {
+  background-color: var(--grey);
+}
+/* Boton de versiones */
+.git-versions {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.git-versions:before {
+  content: attr(data-hover);
+  display: none;
+  width: max-content;
+  border: 2px solid var(--dark);
+  border-radius: var(--bradius);
+  background-color: var(--light);
+  color: var(--dark);
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 4px;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 105%;
+}
+.git-versions:hover:before {
+  display: block;
+}
+.git-versions img {
+  height: 20px;
+}
+.git-versions select {
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1rem;
+  margin-left: 4px;
+  cursor: pointer;
+}
+/* Boton de carga */
+.simulacion-carga {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.simulacion-carga svg {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  transition: fill 800ms linear;
+}
+.simulacion-carga svg.ON {
+  fill: limegreen;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-animation: flip 800ms both;
+  animation: flip 800ms both;
+}
+.simulacion-carga svg.OFF {
+  fill: crimson;
+  transition: fill 200ms linear;
+}
+.simulacion-carga:before {
+  content: attr(data-hover);
+  display: none;
+  width: max-content;
+  border: 2px solid var(--dark);
+  border-radius: var(--bradius);
+  background-color: var(--light);
+  color: var(--dark);
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 4px;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 105%;
+}
+.simulacion-carga:hover:before {
+  display: block;
+}
+/* Boton de idioma */
+.lang-btn {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lang-btn:before {
+  content: attr(data-hover);
+  display: none;
+  width: max-content;
+  border: 2px solid var(--dark);
+  border-radius: var(--bradius);
+  background-color: var(--light);
+  color: var(--dark);
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 4px;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 105%;
+}
+.lang-btn:hover:before {
+  display: block;
+}
+.lang-window {
+  position: absolute;
+  border-radius: var(--bradius);
+  color: var(--light);
+  font-weight: bold;
+  background-color: var(--orange);
+  width: 4ch;
+  height: 24px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.lang-window .lang-container {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  -webkit-transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+}
+.lang-window.es .lang-container {
+  transform: translateX(-4ch);
+}
+.lang-container .lang-item {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2px;
+}
+.header-btns .btns-back {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+/* FIN Header */
+
+/* Home */
+.cryptos {
+  color: var(--dark);
+  width: 80%;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+.cryptos .currency {
+  list-style: none;
+}
+.cryptos .currency {
+  border-top: solid 2px var(--dark);
+  transition: background-color ease-out 300ms;
+}
+.cryptos .currency a {
+  height: 4rem;
+  margin: 0 4vw;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.cryptos .currency:first-child {
+  border: none;
+}
+.cryptos .currency:hover {
+  background-color: var(--orange);
+  color: var(--light);
+  border-radius: var(--bradius);
+  border-bottom: solid 2px var(--dark);
+}
+.cryptos .currency:hover + li {
+  border-top: none;
+}
+.cryptos .currency a .name {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cryptos .currency a .name img {
+  height: 80%;
+  width: auto;
+  margin-right: 8px;
+}
+.cryptos .currency a .name h3 {
+  margin: 0 16px;
+  width: 5ch;
+}
+.cryptos .currency a > p {
+  width: 120px;
+  font-weight: bold;
+}
+/* FIN Home */
+
+/* Trade */
+.trade-container {
+  min-height: calc(100dvh - var(--header-height));
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.trade-container .trade-card {
+  height: max(200px, 30dvh);
+  width: clamp(300px, 50%, 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.trade-container .trade-card .trade-from,
+.trade-container .trade-card .trade-to {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  padding: 0 16px;
+  background: var(--grey);
+  border-radius: var(--bradius);
+  box-shadow: 0 0 5px #ccc8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trade-container .trade-card .note {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-weight: bold;
+  color: #3338;
+  font-size: 0.9rem;
+  cursor: default;
+  text-transform: capitalize;
+}
+.sel-list-container {
+  display: none;
+  background-color: var(--light);
+  position: absolute;
+  padding: 24px;
+  min-height: max(200px + 108px, 30dvh + 108px);
+  width: clamp(300px, 50%, 400px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--orange);
+  border-radius: var(--bradius);
+  -webkit-animation: zoomIn 300ms both;
+  animation: zoomIn 300ms both;
+}
+.sel-list-container > img {
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+.sel-list-container #select-list {
+  margin: 10px;
+  padding: 10px 25px;
+  list-style: none;
+  cursor: pointer;
+  column-count: 2;
+  column-gap: 6rem;
+  column-rule: 2px solid var(--orange);
+}
+.sel-list-container #select-list li {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+.sel-list-container #select-list li:hover {
+  transform: scale(1.1);
+  font-weight: bold;
+}
+.sel-list-container #select-list img {
+  height: 30px;
+  margin-right: 8px;
+}
+.trade-container .trade-card #trade-icon {
+  padding: 3px 3px 0;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  transition: transform ease-out 300ms;
+}
+.trade-container .trade-card #trade-icon:hover {
+  transform: rotate(360deg);
+}
+.trade-container .trade-btns {
+  margin-top: 48px;
+  width: clamp(300px, 50%, 400px);
+  height: 60px;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trade-btns a,
+.trade-btns span {
+  height: 100%;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-variant: small-caps;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out 300ms, color linear 100ms;
+}
+.trade-btns.empty a {
+  width: 100%;
+  background-color: var(--orange);
+  border-radius: 2.5rem;
+}
+.trade-btns.empty span {
+  display: none;
+  width: 0;
+}
+.trade-btns a {
+  width: 30%;
+  border-radius: 2.5rem 0 0 2.5rem;
+  background-color: var(--opposite);
+}
+.trade-btns span {
+  width: 69%;
+  background-color: var(--orange);
+  cursor: pointer;
+  border-radius: 0 2.5rem 2.5rem 0;
+}
+.trade-container a:hover,
+.trade-container span:hover {
+  color: var(--light);
+}
+.trade-container .trade-card input[type="number"] {
+  height: 2.5rem;
+  font-size: 1.5rem;
+  width: 50%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 12px;
+}
+.trade-container .trade-card button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--greydarker);
+  color: var(--dark);
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color linear 100ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trade-container .trade-card button span {
+  padding-bottom: 2px;
+}
+.trade-container .trade-card button img {
+  height: 24px;
+  margin-right: 8px;
+}
+.trade-container .trade-card button:hover {
+  color: var(--light);
+}
+/* FIN Trade */
+
+/* Loading */
+.loading-container {
+  position: absolute;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading {
+  height: 5vw;
+  width: 5vw;
+  border: thick solid var(--orange);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinnerAnimation 700ms ease-out infinite;
+  -webkit-animation: spinnerAnimation 700ms ease-out infinite;
+}
+/* FIN Loading */
+
+/* Error */
+.error-bg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #000a;
+  -webkit-animation: zoomIn 300ms both;
+  animation: zoomIn 300ms both;
+}
+.error-bg .error-container {
+  position: relative;
+  height: 300px;
+  width: max-content;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light);
+  border: 2px solid crimson;
+  border-radius: var(--bradius);
+  text-align: center;
+}
+.error-container > img {
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+.error-bg .error-container .error-title {
+  margin-bottom: 48px;
+  color: crimson;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.error-bg .error-container .error-desc {
+  margin-bottom: 48px;
+  color: var(--dark);
+  font-size: 1.2rem;
+}
+.error-bg .error-container .error-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: crimson;
+  color: var(--black);
+  transition: color linear 100ms;
+  font-size: 1.2rem;
+  font-variant: small-caps;
+  font-weight: bold;
+  cursor: pointer;
+}
+.error-bg .error-container .error-btn:hover {
+  color: var(--light);
+}
+.error-bg.visible {
+  display: flex;
+}
+/* FIN Error */
+
+/* Animaciones */
+@keyframes spinnerAnimation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes flip {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  40% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  50% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  80% {
+    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95);
+    transform: perspective(400px) scale3d(0.95, 0.95, 0.95);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+}
+/* FIN Animaciones */
+
+/* Responsive design (desktop first) */
+@media screen and (width <= 768px) {
+  /* Header */
+  header {
+    padding-right: 10dvw;
+  }
+  .header-btns {
+    right: 5dvw;
+  }
+  /* Trade */
+  .sel-list-container #select-list {
+    column-gap: 4rem;
+  }
+}
+@media screen and (width <= 425px) {
+  /* Header */
+  header a img {
+    height: 1.5rem;
+  }
+  /* Home */
+  .cryptos {
+    width: 90%;
+  }
+  .cryptos .currency {
+    font-size: 0.9rem;
+  }
+  .cryptos .currency a .name h2 {
+    margin: 0 3dvw;
+  }
+  .cryptos .currency a .name img {
+    height: 70%;
+  }
+  /* Trade */
+  .sel-list-container #select-list {
+    column-gap: 2rem;
+  }
+}
+@media screen and (width <= 375px) {
+  /* Trade */
+  .trade-container .trade-btns,
+  .trade-container .trade-card,
+  .trade-container .sel-list-container {
+    width: 90%;
+  }
+}
+@media screen and (width <= 290px) {
+  /* Header */
+  header a img {
+    height: 1rem;
+  }
+  /* Home */
+  .cryptos {
+    width: 95%;
+  }
+}
+/* FIN Responsive design (desktop first) */
