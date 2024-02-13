@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 :root {
-  --main: #484848;
-  --orange: #ff7200;
-  --opposite: #4e82f3;
-  --black: #000000;
-  --dark: #333333;
-  --light: #f5f5f5;
-  --white: #ffffff;
-  --grey: #bdbdbd91;
-  --greydarker: #959595;
+  --c1: #b5179e;
+  --c2: #805ebf;
+  --c3: #632240;
+  --c4: #352c32;
+  --c5: #222022;
+  --c6: #959595;
+  --c7: #fafafa;
+  --err: crimson;
   --header-height: 80px;
+  --footer-height: 24px;
   --bradius: 0.25rem;
 }
 html {
@@ -25,11 +25,7 @@ html {
 body {
   min-height: 100dvh;
   margin: 0;
-  background: var(--light);
-  background-image: url('../img/Exisoft_BGD_1.jpg');
-  background-position: 0 50%;
-  background-size: cover;
-  background-attachment: fixed;
+  background: var(--c5);
 }
 a,
 a:hover,
@@ -45,195 +41,50 @@ input::-webkit-inner-spin-button {
 }
 input[type='number'] {
   appearance: textfield;
+  color: var(--c7);
+}
+/* Para scrollbar */
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #2c2c2c;
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+  border-radius: 20px;
+  border: 3px solid #2c2c2c;
 }
 
 /* Header */
 header {
   height: var(--header-height);
-  background-image: url('../img/Exisoft_BGD_4.jpg');
-  background-color: var(--main);
-  background-position: 0 40%;
-  background-size: cover;
+  background-image: linear-gradient(
+    150deg,
+    var(--c2),
+    var(--c3),
+    var(--c3),
+    var(--c4)
+  );
   display: flex;
   align-items: center;
   justify-content: space-around;
-}
-header a img {
-  height: 2rem;
-  width: auto;
-  margin-left: 4px;
-}
-/* Botones del header */
-.header-btns {
-  position: absolute;
-  right: 7dvw;
-  display: flex;
-  align-items: center;
-}
-.header-btns .btn-burguer-cont {
-  height: 30px;
-  width: 30px;
-  padding: 14px 5px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.btn-burguer-cont .btn-burguer {
-  width: 100%;
-  height: 2px;
-  background-color: var(--light);
-  transition: background-color 200ms ease-in-out;
-}
-.btn-burguer-cont .btn-burguer::before,
-.btn-burguer-cont .btn-burguer::after {
-  content: '';
-  width: 20px;
-  height: 2px;
-  position: absolute;
-  background-color: var(--light);
-  transition: background-color 200ms ease-in-out;
-}
-.btn-burguer-cont .btn-burguer::before {
-  top: 7px;
-}
-.btn-burguer-cont .btn-burguer::after {
-  bottom: 7px;
-}
-.btn-burguer-cont:hover .btn-burguer,
-.btn-burguer-cont:hover .btn-burguer::before,
-.btn-burguer-cont:hover .btn-burguer::after {
-  background-color: var(--orange);
-}
-.header-btns .btns-group {
-  height: 120px;
-  width: 100px;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 60;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: var(--light);
-  border: 2px solid var(--orange);
-  border-radius: var(--bradius);
-  -webkit-animation: zoomIn 300ms both;
-  animation: zoomIn 300ms both;
-}
-.header-btns .btns-group > span:hover {
-  background-color: var(--grey);
-}
-/* Boton de versiones */
-.git-versions {
-  height: 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.git-versions:before {
-  content: attr(data-hover);
-  display: none;
-  width: max-content;
-  border: 2px solid var(--dark);
-  border-radius: var(--bradius);
-  background-color: var(--light);
-  color: var(--dark);
-  font-weight: 600;
-  text-align: center;
-  padding: 2px 4px;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 105%;
-}
-.git-versions:hover:before {
-  display: block;
-}
-.git-versions img {
-  height: 20px;
-}
-.git-versions select {
-  height: 100%;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  font-size: 1rem;
-  margin-left: 4px;
-  cursor: pointer;
-}
-/* Boton de idioma */
-.lang-btn {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.lang-btn:before {
-  content: attr(data-hover);
-  display: none;
-  width: max-content;
-  border: 2px solid var(--dark);
-  border-radius: var(--bradius);
-  background-color: var(--light);
-  color: var(--dark);
-  font-weight: 600;
-  text-align: center;
-  padding: 2px 4px;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 105%;
-}
-.lang-btn:hover:before {
-  display: block;
-}
-.lang-window {
-  position: absolute;
-  border-radius: var(--bradius);
-  color: var(--light);
-  font-weight: bold;
-  background-color: var(--orange);
-  width: 4ch;
-  height: 24px;
   overflow: hidden;
-  cursor: pointer;
 }
-.lang-window .lang-container {
-  width: 200%;
-  height: 100%;
-  display: flex;
-  -webkit-transition: transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out;
-}
-.lang-window.es .lang-container {
-  transform: translateX(-4ch);
-}
-.lang-container .lang-item {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 2px;
-}
-.header-btns .btns-back {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
+header img {
+  height: 4rem;
+  width: auto;
+  border-radius: 50% var(--bradius);
+  box-shadow: var(--c3) 0 0 10px 10px;
 }
 /* FIN Header */
 
 /* Home */
 .cryptos {
-  color: var(--dark);
+  color: var(--c7);
   width: 80%;
   margin: 0 auto;
   padding: 8px 0;
@@ -242,7 +93,7 @@ header a img {
   list-style: none;
 }
 .cryptos .currency {
-  border-top: solid 2px var(--dark);
+  border-top: solid 2px var(--c7);
   transition: background-color ease-out 300ms;
 }
 .cryptos .currency a {
@@ -257,10 +108,9 @@ header a img {
   border: none;
 }
 .cryptos .currency:hover {
-  background-color: var(--orange);
-  color: var(--light);
+  background-color: var(--c2);
   border-radius: var(--bradius);
-  border-bottom: solid 2px var(--dark);
+  border-bottom: solid 2px var(--c7);
 }
 .cryptos .currency:hover + li {
   border-top: none;
@@ -310,9 +160,9 @@ header a img {
   height: 80px;
   width: 100%;
   padding: 0 16px;
-  background: var(--grey);
+  background: var(--c4);
   border-radius: var(--bradius);
-  box-shadow: 0 0 5px #ccc8;
+  box-shadow: 1px 1px 8px var(--c4);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -322,23 +172,23 @@ header a img {
   top: 8px;
   left: 8px;
   font-weight: bold;
-  color: #3338;
+  color: var(--c6);
   font-size: 0.9rem;
   cursor: default;
   text-transform: capitalize;
 }
 .sel-list-container {
   display: none;
-  background-color: var(--light);
+  background-color: var(--c5);
   position: absolute;
-  padding: 24px;
+  padding: 25px;
   width: clamp(300px, 50%, 400px);
-  height: 460px;
+  height: 470px;
   overflow: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--c2);
   border-radius: var(--bradius);
   -webkit-animation: zoomIn 300ms both;
   animation: zoomIn 300ms both;
@@ -360,8 +210,8 @@ header a img {
   cursor: pointer;
   column-count: 2;
   column-gap: 6rem;
-  column-rule: 2px solid var(--orange);
-  height: 100%;
+  column-rule: 2px solid var(--c2);
+  height: 420px;
   overflow: auto;
 }
 .sel-list-container #select-list li {
@@ -370,6 +220,7 @@ header a img {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
+  color: var(--c7);
 }
 .sel-list-container #select-list li:nth-child(1) {
   margin-top: 0;
@@ -395,7 +246,7 @@ header a img {
   margin-top: 48px;
   width: clamp(300px, 50%, 400px);
   height: 60px;
-  color: var(--dark);
+  color: var(--c7);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -415,7 +266,7 @@ header a img {
 }
 .trade-btns.empty a {
   width: 100%;
-  background-color: var(--orange);
+  background-color: var(--c2);
   border-radius: 2.5rem;
 }
 .trade-btns.empty span {
@@ -425,17 +276,17 @@ header a img {
 .trade-btns a {
   width: 30%;
   border-radius: 2.5rem 0 0 2.5rem;
-  background-color: var(--opposite);
+  background-color: var(--c2);
 }
 .trade-btns span {
   width: 69%;
-  background-color: var(--orange);
+  background-color: var(--c1);
   cursor: pointer;
   border-radius: 0 2.5rem 2.5rem 0;
 }
 .trade-container a:hover,
 .trade-container span:hover {
-  color: var(--light);
+  color: var(--c7);
 }
 .trade-container .trade-card input[type='number'] {
   height: 2.5rem;
@@ -450,8 +301,8 @@ header a img {
   padding: 12px 20px;
   border: none;
   border-radius: 2.5rem;
-  background-color: var(--greydarker);
-  color: var(--dark);
+  background-color: var(--c5);
+  color: var(--c6);
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
@@ -468,7 +319,7 @@ header a img {
   margin-right: 8px;
 }
 .trade-container .trade-card button:hover {
-  color: var(--light);
+  color: var(--c7);
 }
 /* FIN Trade */
 
@@ -485,7 +336,7 @@ header a img {
 .loading {
   height: 5vw;
   width: 5vw;
-  border: thick solid var(--orange);
+  border: thick solid var(--c2);
   border-right-color: transparent;
   border-radius: 50%;
   animation: spinnerAnimation 700ms ease-out infinite;
@@ -516,8 +367,8 @@ header a img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--light);
-  border: 2px solid crimson;
+  background-color: var(--c5);
+  border: 2px solid var(--err);
   border-radius: var(--bradius);
   text-align: center;
 }
@@ -530,13 +381,13 @@ header a img {
 }
 .error-bg .error-container .error-title {
   margin-bottom: 48px;
-  color: crimson;
+  color: var(--err);
   font-size: 2rem;
   font-weight: bold;
 }
 .error-bg .error-container .error-desc {
   margin-bottom: 48px;
-  color: var(--dark);
+  color: var(--c7);
   font-size: 1.2rem;
 }
 .error-bg .error-container .error-btn {
@@ -546,8 +397,8 @@ header a img {
   padding: 16px 32px;
   border: none;
   border-radius: 2.5rem;
-  background-color: crimson;
-  color: var(--black);
+  background-color: var(--err);
+  color: var(--c5);
   transition: color linear 100ms;
   font-size: 1.2rem;
   font-variant: small-caps;
@@ -555,12 +406,35 @@ header a img {
   cursor: pointer;
 }
 .error-bg .error-container .error-btn:hover {
-  color: var(--light);
+  color: var(--c5);
 }
 .error-bg.visible {
   display: flex;
 }
 /* FIN Error */
+
+/* Footer */
+footer {
+  height: var(--footer-height);
+  background-color: #42112f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c7);
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  letter-spacing: 1px;
+}
+footer a {
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+/* FIN Footer */
 
 /* Animaciones */
 @keyframes spinnerAnimation {
@@ -618,23 +492,12 @@ header a img {
 
 /* Responsive design (desktop first) */
 @media screen and (width <= 768px) {
-  /* Header */
-  header {
-    padding-right: 10dvw;
-  }
-  .header-btns {
-    right: 5dvw;
-  }
   /* Trade */
   .sel-list-container #select-list {
     column-gap: 4rem;
   }
 }
 @media screen and (width <= 425px) {
-  /* Header */
-  header a img {
-    height: 1.5rem;
-  }
   /* Home */
   .cryptos {
     width: 90%;
@@ -662,10 +525,6 @@ header a img {
   }
 }
 @media screen and (width <= 290px) {
-  /* Header */
-  header a img {
-    height: 1rem;
-  }
   /* Home */
   .cryptos {
     width: 95%;

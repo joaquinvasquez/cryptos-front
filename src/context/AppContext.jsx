@@ -5,8 +5,8 @@ const AppContext = createContext()
 const AppProvider = ({ children }) => {
   const [list, setList] = useState([])
   const [codes, setCodes] = useState([])
-  const [cryptoFrom, setCryptoFrom] = useState('USDT')
-  const [cryptoTo, setCryptoTo] = useState('ETH')
+  const [cryptoFrom, setCryptoFrom] = useState('ETH')
+  const [cryptoTo, setCryptoTo] = useState('USDT')
   const [amountFrom, setAmountFrom] = useState('')
   const [amountTo, setAmountTo] = useState('')
   const [selectListOpen, setSelectListOpen] = useState('')
@@ -38,6 +38,7 @@ const AppProvider = ({ children }) => {
         .slice(0, 40)
       setList(finalJson)
       setLoading(false)
+      return finalJson
     } catch (err) {
       console.log(err)
       setError('visible')
@@ -48,7 +49,11 @@ const AppProvider = ({ children }) => {
 
   // LISTA DE CODES PARA EL DROPDOWN DE TRADE
   const getCodesList = async () => {
-    const codesList = list.map((item) => item.code)
+    let newList = list
+    if (newList.length === 0) {
+      newList = await getCurrencyList()
+    }
+    const codesList = newList.map((item) => item.code)
     setCodes(codesList)
     setLoading(false)
   }
@@ -56,8 +61,8 @@ const AppProvider = ({ children }) => {
   // INIT TRADE
   const handleCryptoFrom = (code) => {
     setLoading(true)
-    setCryptoFrom('USDT')
-    setCryptoTo(code)
+    setCryptoFrom(code)
+    setCryptoTo('USDT')
     setAmountFrom('')
     setAmountTo('')
     setSelectListOpen('')
@@ -68,21 +73,16 @@ const AppProvider = ({ children }) => {
   // ROTA LAS CRYPTOS EN TRADE
   const changeCurrencyOrder = () => {
     let cryptoAux = cryptoFrom
-    let amountAux = amountFrom
     setCryptoFrom(cryptoTo)
     setCryptoTo(cryptoAux)
-    setAmountFrom(amountTo)
-    setAmountTo(amountAux)
   }
 
   // MUESTRA LISTA DE CODES PARA SELECCIONAR
   const handleSelectList = (open) => {
     if (open) {
-      console.log('open')
       setSelectListOpen('visible')
       setSelectCrypto(open)
     } else {
-      console.log('close')
       setSelectListOpen('')
       setSelectCrypto('')
     }
@@ -120,18 +120,27 @@ const AppProvider = ({ children }) => {
   const handleCalculator = async () => {
     let value1 = { price: 1 }
     let value2 = { price: 1 }
+    let urlError = null
+    const setUrl = (param) => {
+      return `https://api.binance.com/api/v3/ticker/price?symbol=${param}USDT`
+    }
     try {
       if (cryptoFrom !== 'USDT')
-        value1 = await fetch(
-          `https://api.binance.com/api/v3/ticker/price?symbol=${cryptoFrom}USDT`
-        ).then((res) => res.json())
+        value1 = await fetch(setUrl(cryptoFrom))
+          .then((res) => res.json())
+          .catch(() => {
+            urlError = cryptoFrom
+          })
       if (cryptoTo !== 'USDT')
-        value2 = await fetch(
-          `https://api.binance.com/api/v3/ticker/price?symbol=${cryptoTo}USDT`
-        ).then((res) => res.json())
+        value2 = await fetch(setUrl(cryptoTo))
+          .then((res) => res.json())
+          .catch(() => {
+            urlError = cryptoTo
+          })
       setAmountTo(((value1.price * amountFrom) / value2.price).toFixed(8))
     } catch (err) {
       console.log(err)
+      setTextError(setUrl(urlError))
       setError('visible')
     }
   }

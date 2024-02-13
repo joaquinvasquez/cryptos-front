@@ -1,5 +1,6 @@
-import Navbar from "./Navbar";
-import Error from "./Error";
+import Navbar from './Navbar'
+import Error from './Error'
+import Footer from './Footer'
 
 const Layout = ({ children }) => {
   return (
@@ -7,8 +8,9 @@ const Layout = ({ children }) => {
       <Navbar />
       {children}
       <Error />
+      <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
