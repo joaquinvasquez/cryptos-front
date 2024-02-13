@@ -1,162 +1,142 @@
-import { createContext, useState } from "react";
-import axios from "axios";
-import idiomas from "../assets/Idiomas.json";
-
-const AppContext = createContext();
-
-const baseUrl = "http://bff-demo-ocp.apps.exiocp.exisoft.local/bff/v1";
+import { createContext, useState } from 'react'
+import tokens from '../assets/tokens.json'
+const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
-  const [list, setList] = useState([]);
-  const [codes, setCodes] = useState([]);
-  const [cryptoFrom, setCryptoFrom] = useState("TUSD");
-  const [cryptoTo, setCryptoTo] = useState("ETH");
-  const [amountFrom, setAmountFrom] = useState("");
-  const [amountTo, setAmountTo] = useState("");
-  const [selectListOpen, setSelectListOpen] = useState("");
-  const [error, setError] = useState("");
-  const [textError, setTextError] = useState("");
-  const [selectCrypto, setSelectCrypto] = useState("");
-  const [texts, setTexts] = useState(idiomas.es);
-  const [loading, setLoading] = useState(true);
-  const [zeros, setZeros] = useState("empty");
-  const [charge, setCharge] = useState("OFF");
+  const [list, setList] = useState([])
+  const [codes, setCodes] = useState([])
+  const [cryptoFrom, setCryptoFrom] = useState('USDT')
+  const [cryptoTo, setCryptoTo] = useState('ETH')
+  const [amountFrom, setAmountFrom] = useState('')
+  const [amountTo, setAmountTo] = useState('')
+  const [selectListOpen, setSelectListOpen] = useState('')
+  const [error, setError] = useState('')
+  const [textError, setTextError] = useState('')
+  const [selectCrypto, setSelectCrypto] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [zeros, setZeros] = useState('empty')
 
   // LISTA DE CRYPTOS DEL HOME
   const getCurrencyList = async () => {
-    const url = `${baseUrl}/currency`;
-    await axios
-      .get(url)
-      .then((res) => {
-        setList(res.data.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("visible");
-        setTextError(url);
-        setLoading(false);
-      });
-  };
+    const url = `https://data-api.binance.vision/api/v3/ticker/price`
+    try {
+      const res = await fetch(url)
+      const json = await res.json()
+      const finalJson = tokens
+        .map((item) => {
+          const price = json.find(
+            (i) => i.symbol === `${item.symbol}USDT`
+          )?.price
+          return {
+            name: item.name,
+            code: item.symbol,
+            price: parseFloat(price).toFixed(4),
+            img: item.urlIcon,
+          }
+        })
+        .filter((item) => item.price !== 'NaN' && item.price !== 'undefined')
+        .slice(0, 40)
+      setList(finalJson)
+      setLoading(false)
+    } catch (err) {
+      console.log(err)
+      setError('visible')
+      setTextError(url)
+      setLoading(false)
+    }
+  }
 
   // LISTA DE CODES PARA EL DROPDOWN DE TRADE
   const getCodesList = async () => {
-    const url = `${baseUrl}/token`;
-    await axios
-      .get(url)
-      .then((res) => {
-        setCodes(res.data.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("visible");
-        setTextError(url);
-        setLoading(false);
-      });
-  };
+    const codesList = list.map((item) => item.code)
+    setCodes(codesList)
+    setLoading(false)
+  }
 
   // INIT TRADE
   const handleCryptoFrom = (code) => {
-    setLoading(true);
-    setCryptoFrom("TUSD");
-    setCryptoTo(code);
-    setAmountFrom("");
-    setAmountTo("");
-    setSelectListOpen("");
-    setSelectCrypto("");
-    setZeros("empty");
-  };
+    setLoading(true)
+    setCryptoFrom('USDT')
+    setCryptoTo(code)
+    setAmountFrom('')
+    setAmountTo('')
+    setSelectListOpen('')
+    setSelectCrypto('')
+    setZeros('empty')
+  }
 
   // ROTA LAS CRYPTOS EN TRADE
   const changeCurrencyOrder = () => {
-    let cryptoAux = cryptoFrom;
-    let amountAux = amountFrom;
-    setCryptoFrom(cryptoTo);
-    setCryptoTo(cryptoAux);
-    setAmountFrom(amountTo);
-    setAmountTo(amountAux);
-  };
+    let cryptoAux = cryptoFrom
+    let amountAux = amountFrom
+    setCryptoFrom(cryptoTo)
+    setCryptoTo(cryptoAux)
+    setAmountFrom(amountTo)
+    setAmountTo(amountAux)
+  }
 
   // MUESTRA LISTA DE CODES PARA SELECCIONAR
   const handleSelectList = (open) => {
     if (open) {
-      setSelectListOpen("visible");
-      setSelectCrypto(open);
+      console.log('open')
+      setSelectListOpen('visible')
+      setSelectCrypto(open)
     } else {
-      setSelectListOpen("");
-      setSelectCrypto("");
+      console.log('close')
+      setSelectListOpen('')
+      setSelectCrypto('')
     }
-  };
+  }
 
   // SELECCIONA CRYPTO ORIGEN O DESTINO
   const handleCrypto = (item) => {
-    if (selectCrypto == "from") setCryptoFrom(item);
-    else if (selectCrypto == "to") setCryptoTo(item);
-    setAmountFrom("");
-    setAmountTo("");
-    handleSelectList(false);
-  };
+    if (selectCrypto == 'from') setCryptoFrom(item)
+    else if (selectCrypto == 'to') setCryptoTo(item)
+    setAmountFrom('')
+    setAmountTo('')
+    handleSelectList(false)
+  }
 
   // MANEJA LOS VALORES DEL TRADE
   const handleAmounts = (t) => {
-    if (t.value >= 0 && t.value !== "") {
-      if (t.name === "from-amount") {
-        if (amountTo !== "") setAmountTo("");
-        setAmountFrom(t.value);
-        setZeros("");
-      } else if (t.name === "to-amount") {
-        if (amountFrom !== "") setAmountFrom("");
-        setAmountTo(t.value);
-        setZeros("");
+    if (t.value >= 0 && t.value !== '') {
+      if (t.name === 'from-amount') {
+        if (amountTo !== '') setAmountTo('')
+        setAmountFrom(t.value)
+        setZeros('')
+      } else if (t.name === 'to-amount') {
+        if (amountFrom !== '') setAmountFrom('')
+        setAmountTo(t.value)
+        setZeros('')
       }
     } else {
-      setAmountFrom("");
-      setAmountTo("");
-      setZeros("empty");
+      setAmountFrom('')
+      setAmountTo('')
+      setZeros('empty')
     }
-  };
+  }
 
   // LLAMA A LA API DE TRADE
   const handleCalculator = async () => {
-    const url = `${baseUrl}/trade/${amountFrom}/${cryptoFrom}/${cryptoTo}`;
-    await axios
-      .get(url)
-      .then((res) => setAmountTo(res.data.data.montoMonedaDestino.toFixed(8)))
-      .catch(() => {
-        setError("visible");
-        setTextError(url);
-      });
-  };
-
-  // LLAMA A LA SIMULACION DE CARGA
-  const handleCharge = async () => {
-    const url = `${baseUrl}/load`;
-    await axios
-      .get(url)
-      .then((res) => setCharge(res.data.data))
-      .catch(() => {
-        setError("visible");
-        setTextError(url);
-      });
-  };
-  // INIT A LA SIMULACION DE CARGA
-  const initCharge = async () => {
-    const url = `${baseUrl}/load`;
-    await axios
-      .get(url)
-      .then((res) => {
-        if (res.data.data === "ON") initCharge();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    let value1 = { price: 1 }
+    let value2 = { price: 1 }
+    try {
+      if (cryptoFrom !== 'USDT')
+        value1 = await fetch(
+          `https://api.binance.com/api/v3/ticker/price?symbol=${cryptoFrom}USDT`
+        ).then((res) => res.json())
+      if (cryptoTo !== 'USDT')
+        value2 = await fetch(
+          `https://api.binance.com/api/v3/ticker/price?symbol=${cryptoTo}USDT`
+        ).then((res) => res.json())
+      setAmountTo(((value1.price * amountFrom) / value2.price).toFixed(8))
+    } catch (err) {
+      console.log(err)
+      setError('visible')
+    }
+  }
 
   const data = {
-    texts,
-    setTexts,
-    charge,
-    handleCharge,
-    initCharge,
     loading,
     setLoading,
     error,
@@ -177,9 +157,9 @@ const AppProvider = ({ children }) => {
     handleSelectList,
     handleCrypto,
     handleCalculator,
-  };
-  return <AppContext.Provider value={data}>{children}</AppContext.Provider>;
-};
+  }
+  return <AppContext.Provider value={data}>{children}</AppContext.Provider>
+}
 
-export { AppProvider };
-export default AppContext;
+export { AppProvider }
+export default AppContext

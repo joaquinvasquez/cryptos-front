@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 :root {
   --main: #484848;
@@ -20,13 +20,13 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  font-family: "Barlow", arial, sans-serif;
+  font-family: 'Barlow', arial, sans-serif;
 }
 body {
   min-height: 100dvh;
   margin: 0;
   background: var(--light);
-  background-image: url("../img/Exisoft_BGD_1.jpg");
+  background-image: url('../img/Exisoft_BGD_1.jpg');
   background-position: 0 50%;
   background-size: cover;
   background-attachment: fixed;
@@ -43,14 +43,14 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type="number"] {
+input[type='number'] {
   appearance: textfield;
 }
 
 /* Header */
 header {
   height: var(--header-height);
-  background-image: url("../img/Exisoft_BGD_4.jpg");
+  background-image: url('../img/Exisoft_BGD_4.jpg');
   background-color: var(--main);
   background-position: 0 40%;
   background-size: cover;
@@ -86,7 +86,7 @@ header a img {
 }
 .btn-burguer-cont .btn-burguer::before,
 .btn-burguer-cont .btn-burguer::after {
-  content: "";
+  content: '';
   width: 20px;
   height: 2px;
   position: absolute;
@@ -163,51 +163,6 @@ header a img {
   font-size: 1rem;
   margin-left: 4px;
   cursor: pointer;
-}
-/* Boton de carga */
-.simulacion-carga {
-  height: 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.simulacion-carga svg {
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  transition: fill 800ms linear;
-}
-.simulacion-carga svg.ON {
-  fill: limegreen;
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  -webkit-animation: flip 800ms both;
-  animation: flip 800ms both;
-}
-.simulacion-carga svg.OFF {
-  fill: crimson;
-  transition: fill 200ms linear;
-}
-.simulacion-carga:before {
-  content: attr(data-hover);
-  display: none;
-  width: max-content;
-  border: 2px solid var(--dark);
-  border-radius: var(--bradius);
-  background-color: var(--light);
-  color: var(--dark);
-  font-weight: 600;
-  text-align: center;
-  padding: 2px 4px;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 105%;
-}
-.simulacion-carga:hover:before {
-  display: block;
 }
 /* Boton de idioma */
 .lang-btn {
@@ -377,8 +332,9 @@ header a img {
   background-color: var(--light);
   position: absolute;
   padding: 24px;
-  min-height: max(200px + 108px, 30dvh + 108px);
   width: clamp(300px, 50%, 400px);
+  height: 460px;
+  overflow: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -386,6 +342,9 @@ header a img {
   border-radius: var(--bradius);
   -webkit-animation: zoomIn 300ms both;
   animation: zoomIn 300ms both;
+}
+.sel-list-container.visible {
+  display: block;
 }
 .sel-list-container > img {
   height: 20px;
@@ -396,19 +355,24 @@ header a img {
 }
 .sel-list-container #select-list {
   margin: 10px;
-  padding: 10px 25px;
+  padding: 0 25px 10px;
   list-style: none;
   cursor: pointer;
   column-count: 2;
   column-gap: 6rem;
   column-rule: 2px solid var(--orange);
+  height: 100%;
+  overflow: auto;
 }
 .sel-list-container #select-list li {
-  margin-top: 8px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
+}
+.sel-list-container #select-list li:nth-child(1) {
+  margin-top: 0;
 }
 .sel-list-container #select-list li:hover {
   transform: scale(1.1);
@@ -473,7 +437,7 @@ header a img {
 .trade-container span:hover {
   color: var(--light);
 }
-.trade-container .trade-card input[type="number"] {
+.trade-container .trade-card input[type='number'] {
   height: 2.5rem;
   font-size: 1.5rem;
   width: 50%;

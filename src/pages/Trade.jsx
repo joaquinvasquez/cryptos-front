@@ -1,24 +1,23 @@
-import React, { useContext, useEffect } from "react";
-import AppContext from "../context/AppContext";
-import { Link } from "react-router-dom";
-import CardComponentFrom from "../components/trade/CardComponentFrom";
-import CardComponentTo from "../components/trade/CardComponentTo";
-import changeIcon from "./../assets/img/currency_exchange.svg";
-import SelectList from "../components/trade/SelectList";
+import { useContext, useEffect } from 'react'
+import AppContext from '../context/AppContext'
+import { Link } from 'react-router-dom'
+import CardComponentFrom from '../components/trade/CardComponentFrom'
+import CardComponentTo from '../components/trade/CardComponentTo'
+import changeIcon from './../assets/img/currency_exchange.svg'
+import SelectList from '../components/trade/SelectList'
 
 const Trade = () => {
   const {
     loading,
     setLoading,
-    texts,
     changeCurrencyOrder,
     getCodesList,
     handleCalculator,
     zeros,
-  } = useContext(AppContext);
+  } = useContext(AppContext)
   useEffect(() => {
-    getCodesList();
-  }, [texts]);
+    getCodesList()
+  }, [])
 
   return (
     <>
@@ -33,9 +32,9 @@ const Trade = () => {
           </div>
           <div className={`trade-btns ${zeros}`}>
             <Link to="/" onClick={() => setLoading(true)}>
-              {texts[2]}
+              Back
             </Link>
-            <span onClick={() => handleCalculator()}>{texts[3]}</span>
+            <span onClick={() => handleCalculator()}>Preview Conversion</span>
           </div>
           <SelectList />
         </section>
@@ -45,7 +44,7 @@ const Trade = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Trade;
+export default Trade

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import AppContext from "../../context/AppContext";
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import AppContext from '../../context/AppContext'
 
 const Currency = ({ name, code, price, img }) => {
-  const { handleCryptoFrom } = useContext(AppContext);
+  const { handleCryptoFrom } = useContext(AppContext)
   return (
     <li className="currency" onClick={() => handleCryptoFrom(code, img)}>
       <Link to="/trade">
@@ -15,7 +15,7 @@ const Currency = ({ name, code, price, img }) => {
         <p>USD {price}</p>
       </Link>
     </li>
-  );
-};
+  )
+}
 
-export default Currency;
+export default Currency

@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import Currency from "../components/home/Currency";
-import AppContext from "../context/AppContext";
+import { useContext, useEffect } from 'react'
+import Currency from '../components/home/Currency'
+import AppContext from '../context/AppContext'
 const Home = () => {
-  const { loading, getCurrencyList, list } = useContext(AppContext);
+  const { loading, getCurrencyList, list } = useContext(AppContext)
 
   useEffect(() => {
-    getCurrencyList();
-  }, [list]);
+    const interval = setTimeout(() => {
+      getCurrencyList()
+    }, 1000)
+    return () => clearTimeout(interval)
+  }, [list])
 
   return (
     <>
@@ -28,7 +31,7 @@ const Home = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

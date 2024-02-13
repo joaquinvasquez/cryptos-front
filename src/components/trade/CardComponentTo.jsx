@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
-import AppContext from "../../context/AppContext";
+import { useContext } from 'react'
+import AppContext from '../../context/AppContext'
 
 const CardComponentTo = () => {
-  const { texts, cryptoTo, amountTo, handleAmounts, handleSelectList } =
-    useContext(AppContext);
+  const { cryptoTo, amountTo, handleAmounts, handleSelectList } =
+    useContext(AppContext)
   return (
     <div className="trade-to">
-      <span className="note">{texts[1]}</span>
+      <span className="note">To</span>
       <input
+        readOnly
         type="number"
         name="to-amount"
         id="to-amount"
@@ -16,7 +17,7 @@ const CardComponentTo = () => {
         onChange={(e) => handleAmounts(e.target)}
       />
 
-      <button className="dropdown-btn" onClick={() => handleSelectList("to")}>
+      <button className="dropdown-btn" onClick={() => handleSelectList('to')}>
         <img
           src={`https://coinicons-api.vercel.app/api/icon/${cryptoTo.toLowerCase()}`}
           alt="img"
@@ -24,7 +25,7 @@ const CardComponentTo = () => {
         <span>{cryptoTo}</span>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CardComponentTo;
+export default CardComponentTo

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import AppContext from "../../context/AppContext";
-import cross from "../../assets/img/cross.svg";
+import { useContext } from 'react'
+import AppContext from '../../context/AppContext'
+import cross from '../../assets/img/cross.svg'
 
 const SelectList = () => {
   const { codes, handleCrypto, selectListOpen, handleSelectList } =
-    useContext(AppContext);
+    useContext(AppContext)
   return (
     <div className={`sel-list-container ${selectListOpen}`}>
       <img src={cross} alt="cross" onClick={() => handleSelectList(false)} />
@@ -20,7 +20,7 @@ const SelectList = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SelectList;
+export default SelectList
