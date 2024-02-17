@@ -23,3 +23,5 @@ notes.txt
 *.njsproj
 *.sln
 *.sw?
+
+.firebase/
