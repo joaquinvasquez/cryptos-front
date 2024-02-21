@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+
+// Variables
+$c1: #b5179e;
+$c2: #805ebf;
+$c3: #632240;
+$c4: #352c32;
+$c5: #222022;
+$c6: #959595;
+$c7: #fafafa;
+$err: crimson;
+$header-height: 80px;
+$footer-height: 24px;
+$bradius: 0.25rem;
+
+// Global Styles
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: 'Barlow', arial, sans-serif;
+}
+body {
+  min-height: 100dvh;
+  margin: 0;
+  background: $c5;
+}
+a,
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+// Scrollbar
+// Works on Chrome, Edge, and Safari
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #2c2c2c;
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2;
+  border-radius: 20px;
+  border: 3px solid #2c2c2c;
+}
+.cross {
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+// Global Styles End
+
+// Header
+header {
+  height: $header-height;
+  background-image: linear-gradient(150deg, $c2, $c3, $c3, $c4);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+  img {
+    height: 4rem;
+    width: auto;
+    border-radius: 50% $bradius;
+    box-shadow: $c3 0 0 10px 10px;
+  }
+}
+
+// Home
+.cryptos {
+  color: $c7;
+  width: 80%;
+  margin: 0 auto;
+  padding: 8px 0;
+  .currency {
+    list-style: none;
+    border-top: solid 2px $c7;
+    transition: background-color ease-out 300ms;
+    &:first-child {
+      border: none;
+    }
+    &:hover {
+      background-color: $c2;
+      border-radius: $bradius;
+      border-bottom: solid 2px $c7;
+      + li {
+        border-top: none;
+      }
+    }
+    a {
+      height: 4rem;
+      margin: 0 4vw;
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .name {
+        width: 300px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        img {
+          height: 80%;
+          width: auto;
+          margin-right: 8px;
+        }
+        h3 {
+          margin: 0 16px;
+          width: 5ch;
+        }
+      }
+      > p {
+        width: 120px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Trade
+.trade-container {
+  min-height: calc(100dvh - $header-height);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .trade-card {
+    height: max(200px, 30dvh);
+    width: clamp(300px, 50%, 400px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .trade-from,
+    .trade-to {
+      position: relative;
+      height: 80px;
+      width: 100%;
+      padding: 0 16px;
+      background: $c4;
+      border-radius: $bradius;
+      box-shadow: 1px 1px 8px $c4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .note {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        font-weight: bold;
+        color: $c6;
+        font-size: 0.9rem;
+        cursor: default;
+        text-transform: capitalize;
+      }
+      input[type='number'] {
+        appearance: textfield;
+        color: $c7;
+        height: 2.5rem;
+        font-size: 1.5rem;
+        width: 50%;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        margin-top: 12px;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+      .dropdown-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 2.5rem;
+        background-color: $c5;
+        color: $c6;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color linear 100ms;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          height: 24px;
+          margin-right: 8px;
+        }
+        span {
+          padding-bottom: 2px;
+        }
+        &:hover {
+          color: $c7;
+        }
+      }
+    }
+    #trade-icon {
+      padding: 3px 3px 0;
+      cursor: pointer;
+      transform-origin: 50% 50%;
+      transition: transform ease-out 300ms;
+      &:hover {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  .trade-btns {
+    margin-top: 48px;
+    width: clamp(300px, 50%, 400px);
+    height: 60px;
+    color: $c7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn-style {
+      height: 100%;
+      font-size: 1.6rem;
+      text-transform: capitalize;
+      text-decoration: none;
+      font-variant: small-caps;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all ease-in-out 300ms, color linear 100ms;
+    }
+    a {
+      @extend .btn-style;
+      width: 30%;
+      border-radius: 2.5rem 0 0 2.5rem;
+      background-color: $c2;
+    }
+    span {
+      @extend .btn-style;
+      width: 69%;
+      background-color: $c1;
+      cursor: pointer;
+      border-radius: 0 2.5rem 2.5rem 0;
+    }
+    &.empty {
+      a {
+        width: 100%;
+        background-color: $c2;
+        border-radius: 2.5rem;
+      }
+      span {
+        display: none;
+        width: 0;
+      }
+    }
+  }
+  .sel-list-container {
+    display: none;
+    background-color: $c5;
+    position: absolute;
+    padding: 25px;
+    width: clamp(300px, 50%, 400px);
+    height: 470px;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $c2;
+    border-radius: $bradius;
+    -webkit-animation: zoomIn 300ms both;
+    animation: zoomIn 300ms both;
+    &.visible {
+      display: block;
+    }
+    img {
+      @extend .cross;
+    }
+    #select-list {
+      margin: 10px;
+      padding: 0 25px 10px;
+      list-style: none;
+      cursor: pointer;
+      column-count: 2;
+      column-gap: 6rem;
+      column-rule: 2px solid $c2;
+      height: 420px;
+      overflow: auto;
+      li {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        color: $c7;
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+        &:hover {
+          transform: scale(1.1);
+          font-weight: bold;
+        }
+      }
+      img {
+        height: 30px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+// Loading
+.loading-container {
+  position: absolute;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .loading {
+    height: 5vw;
+    width: 5vw;
+    border: thick solid $c2;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinnerAnimation 700ms ease-out infinite;
+    -webkit-animation: spinnerAnimation 700ms ease-out infinite;
+  }
+}
+
+// Error
+.error-bg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #000a;
+  -webkit-animation: zoomIn 300ms both;
+  animation: zoomIn 300ms both;
+  &.visible {
+    display: flex;
+  }
+  .error-container {
+    position: relative;
+    height: 300px;
+    width: max-content;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $c5;
+    border: 2px solid $err;
+    border-radius: $bradius;
+    text-align: center;
+    img {
+      @extend .cross;
+    }
+    .error-title {
+      margin-bottom: 48px;
+      color: $err;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .error-desc {
+      margin-bottom: 48px;
+      color: $c7;
+      font-size: 1.2rem;
+    }
+    .error-btn {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 2.5rem;
+      background-color: $err;
+      color: $c5;
+      transition: color linear 100ms;
+      font-size: 1.2rem;
+      font-variant: small-caps;
+      font-weight: bold;
+      cursor: pointer;
+      &:hover {
+        color: $c5;
+      }
+    }
+  }
+}
+
+// Footer
+footer {
+  height: $footer-height;
+  background-color: #42112f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $c7;
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  letter-spacing: 1px;
+  a {
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+}
+
+// Animations
+@keyframes spinnerAnimation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Responsive design (desktop first)
+@media screen and (width <= 768px) {
+  // Home
+  .cryptos {
+    .currency {
+      font-size: 0.9rem;
+    }
+  }
+  // Trade
+  .trade-container {
+    .trade-btns {
+      .btn-style {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .sel-list-container {
+    #select-list {
+      column-gap: 4rem;
+    }
+  }
+}
+@media screen and (width <= 425px) {
+  // Home
+  .cryptos {
+    width: 90%;
+    .currency {
+      a .name {
+        h3 {
+          margin: 0 3dvw;
+        }
+        img {
+          height: 70%;
+        }
+      }
+    }
+  }
+  // Trade
+  .sel-list-container {
+    #select-list {
+      column-gap: 2rem;
+    }
+  }
+  // Footer
+  footer {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (width <= 375px) {
+  // Trade
+  .trade-container {
+    .trade-btns,
+    .trade-card,
+    .sel-list-container {
+      width: 90%;
+    }
+    .trade-btns {
+      .btn-style {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+@media screen and (width <= 290px) {
+  // Home
+  .cryptos {
+    width: 95%;
+    .currency {
+      a .name {
+        p {
+          font-size: 0.8rem;
+        }
+        h2 {
+          margin: 0 3dvw;
+        }
+      }
+    }
+  }
+  // Trade
+  .trade-container {
+    .trade-btns {
+      .btn-style {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
