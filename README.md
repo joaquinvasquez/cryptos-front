@@ -19,7 +19,6 @@ CryptoConvert is a personal project built with ReactJS that allows users to moni
 Contributions are welcome! Feel free to open Issues or submit Pull Requests.
 
 ---
----
 
 **CryptoConvert (Español)**
 
