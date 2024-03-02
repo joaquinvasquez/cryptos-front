@@ -277,7 +277,7 @@ header {
     &.visible {
       display: block;
     }
-    img {
+    > img {
       @extend .cross;
     }
     #select-list {
@@ -449,6 +449,12 @@ footer {
     .trade-btns {
       .btn-style {
         font-size: 1.5rem;
+      }
+    }
+    .sel-list-container {
+      #select-list {
+        padding: 0 0 10px;
+        column-gap: 4rem;
       }
     }
   }
