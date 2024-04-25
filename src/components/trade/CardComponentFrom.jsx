@@ -18,7 +18,7 @@ const CardComponentFrom = () => {
 
       <button className="dropdown-btn" onClick={() => handleSelectList('from')}>
         <img
-          src={`https://coinicons-api.vercel.app/api/icon/${cryptoFrom.toLowerCase()}`}
+          src={`/cryptocurrencies/${cryptoFrom}.svg`}
           alt="img"
         />
         <span>{cryptoFrom}</span>

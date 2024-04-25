@@ -12,7 +12,7 @@ const SelectList = () => {
         {codes.map((item, i) => (
           <li key={i} value={item} onClick={() => handleCrypto(item)}>
             <img
-              src={`https://coinicons-api.vercel.app/api/icon/${item.toLowerCase()}`}
+              src={`/cryptocurrencies/${item}.svg`}
               alt="img"
             />
             {item}

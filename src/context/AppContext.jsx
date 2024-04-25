@@ -31,11 +31,10 @@ const AppProvider = ({ children }) => {
             name: item.name,
             code: item.symbol,
             price: parseFloat(price).toFixed(4),
-            img: item.urlIcon,
+            img: `/cryptocurrencies/${item.symbol}.svg`,
           }
         })
         .filter((item) => item.price !== 'NaN' && item.price !== 'undefined')
-        .slice(0, 40)
       setList(finalJson)
       setLoading(false)
       return finalJson

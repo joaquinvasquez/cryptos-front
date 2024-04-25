@@ -79,7 +79,7 @@ header {
   color: $c7;
   width: 80%;
   margin: 0 auto;
-  padding: 8px 0;
+  padding: 8px 0 32px;
   .currency {
     list-style: none;
     border-top: solid 2px $c7;
@@ -88,7 +88,7 @@ header {
       border: none;
     }
     &:hover {
-      background-color: $c2;
+      background-color: $c3;
       border-radius: $bradius;
       border-bottom: solid 2px $c7;
       + li {
